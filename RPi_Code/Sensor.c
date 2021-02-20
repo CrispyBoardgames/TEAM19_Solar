@@ -4,6 +4,8 @@
 #include "ADC_Poll.h"
 #include "MUX.h"
 
+//To compile do: gcc -o Sensor Sensor.c ADC_Poll.c MUX.c -lbcm2835
+
 int main()
 {
     int choice = 0;
