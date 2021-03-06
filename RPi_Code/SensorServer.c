@@ -13,7 +13,7 @@
 
 #define PORT 65400
 
-//To compile do: gcc -o SensorServer SensorServer.c ADC_Poll.c MUX.c -lbcm2835
+//To compile do: sudo gcc -o SensorServer SensorServer.c ADC_Poll.c MUX.c -lbcm2835
 
 //Code taken and modified from
 // https://www.geeksforgeeks.org/socket-programming-cc/
@@ -76,10 +76,13 @@ int main()
     //Begin reading from client
     //-1 < buffInt < 8. Send anything outside of range to stop.
     //Will do one more reading before stopping, so scrap if you don't need it.
-    while (buffInt < 8 && buffInt > -1)
+    while (1)
     {
-        valread = read(new_socket, buffer, 1024);
+        valread = read(new_socket, buffer, 1024); //Choose MUX channel select line
         buffInt = atoi(buffer);
+        if (buffInt > 7 || buffInt < 0)
+            break;
+
         MUX_Channel_Sel(buffInt);
         float result = ADC_Read();
         //printf("Server - Received %s\n", buffer);
@@ -87,6 +90,7 @@ int main()
         //Sends back result to python
         send(new_socket, &result, sizeof(result), 0);
     }
+    Stop();
     return 0;
 }
 
