@@ -5,7 +5,7 @@ import time
 #from echo_server import PyServer
 
 print('Starting C server')
-subprocess.Popen('./Server')
+subprocess.Popen('sudo ./SensorServer')
 
 print('Starting python client')
 #serv = PyServer()

@@ -14,6 +14,8 @@
 #define PORT 65400
 
 //To compile do: sudo gcc -o SensorServer SensorServer.c ADC_Poll.c MUX.c -lbcm2835
+int Read_Setup(int channelSel);
+void Stop();
 
 //Code taken and modified from
 // https://www.geeksforgeeks.org/socket-programming-cc/
