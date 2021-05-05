@@ -163,3 +163,5 @@ while True:
             mylcd.lcd_display_string("Enable Middle Switch", 3)
             switch_state = GPIO.input(onOffSwitch)
     time.sleep(.5)
+    inv_voltages1.clear()
+    inv_currents1.clear()
